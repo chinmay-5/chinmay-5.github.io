@@ -5,37 +5,48 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f1f4f9;--fg:#111c2e;--mut:#55627a;--line:#b8c4d8;--panel:#e6ebf3;--acc:#148526;--acc2:#4a9a2f;
+:root{--bg:#f1f4f9;--fg:#111c2e;--mut:#55627a;--line:#a9b9d3;--panel:#e6ebf3;--acc:#148526;--acc2:#4a9a2f;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#050a14;--fg:#e4ebf7;--mut:#8b9ab4;--line:#263550;--panel:#09111f;--acc:#148526;--acc2:#86e08f}}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#050a14;--fg:#e4ebf7;--mut:#8b9ab4;--line:#182339;--panel:#09111f;--acc:#148526;--acc2:#86e08f}}
 :root[data-theme="dark"]{--bg:#050a14;--fg:#e4ebf7;--mut:#8b9ab4;--line:#182339;--panel:#09111f;--acc:#148526;--acc2:#86e08f}
 html{scroll-padding-top:calc(56px + env(safe-area-inset-top,0px));scroll-behavior:smooth;scroll-snap-type:y proximity}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.6 "Space Grotesk",system-ui,sans-serif;
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 "Space Grotesk",system-ui,sans-serif;
 background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:48px 48px;background-attachment:fixed}
 body::before{content:"";position:fixed;inset:0;background:var(--bg);opacity:.86;z-index:-1}
 .mono,code{font-family:"JetBrains Mono",ui-monospace,monospace}
 a{color:var(--acc2)}a:focus-visible,button:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
 main,header.top,footer{max-width:1080px;margin:0 auto;padding:0 20px}
 .header-bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
-header.top{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;gap:12px;flex-wrap:wrap;max-width:1080px;margin:0 auto}
-nav a{margin-right:16px;color:var(--mut);text-decoration:none;font-size:14px;transition:color .15s}nav a:hover{color:var(--acc)}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;gap:12px;flex-wrap:nowrap;max-width:1080px;margin:0 auto}
+nav{overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none;flex:1;min-width:0}
+nav::-webkit-scrollbar{display:none}
+nav a{margin-right:16px;color:var(--mut);text-decoration:none;font-size:14px;transition:color .15s;white-space:nowrap}nav a:hover{color:var(--acc)}
+nav a:last-child{margin-right:4px}
+button.t{flex-shrink:0}
 nav a.active{color:var(--acc)}
 button.t{background:none;border:1px solid var(--line);color:var(--fg);width:30px;height:30px;padding:0;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .15s,color .15s}
 button.t:hover,button.t:focus-visible{border-color:var(--acc);color:var(--acc)}
 button.t svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center;padding:56px 0 30px}
-h1{font-size:clamp(38px,6vw,68px);line-height:1;margin:0 0 16px;letter-spacing:-.035em;font-weight:700;white-space:nowrap}
-.role{color:var(--acc);font-family:"JetBrains Mono",monospace;font-size:26px;font-weight:400;line-height:1.2;min-height:1.2em}
+.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:28px;align-items:center;padding:30px 0 0px}
+.hero-left{min-width:0}
+.hero-copy{min-width:0}
+.hero .pfp{width:200px;height:200px;justify-self:center;margin:0; margin-top: 30px;}
+
+h1{font-size:clamp(32px,5.2vw,56px);line-height:1.05;margin:0 0 14px;letter-spacing:-.03em;font-weight:700;white-space:nowrap}
+.role{color:var(--acc);font-family:"JetBrains Mono",monospace;font-size:17px;font-weight:400;line-height:1.2;min-height:1.2em}
 .role::after{content:"▌";animation:b 1s steps(1) infinite}@keyframes b{50%{opacity:0}}
 .hero p{max-width:52ch;color:var(--mut)}
 .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
 .btn{padding:9px 16px;border:1px solid var(--acc);color:var(--acc);text-decoration:none;border-radius:4px;font:14px "JetBrains Mono",monospace;transition:background .15s,color .15s}
+.btn svg{width:17px;height:17px;display:block;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.btn[href*="github.com"] svg,.btn[href*="linkedin.com"] svg{fill:currentColor;stroke:none}
+
 .btn:hover,.btn:focus-visible,.btn:active{background:var(--acc);color:var(--bg)}
 .btn.p{background:var(--acc);color:var(--bg)}
 .btn.p:hover,.btn.p:focus-visible,.btn.p:active{background:var(--acc2);border-color:var(--acc2);color:var(--bg)}
 .twin{border:1px solid var(--line);background:var(--panel);border-radius:6px;overflow:hidden;margin-top:24px}
-.pfp{aspect-ratio:1;width:50%;border:1px dashed var(--line);background:var(--panel);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--mut);margin:0 auto}
+.pfp{width:200px;height:200px;flex-shrink:0;border:1px dashed var(--line);background:var(--panel);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--mut);margin:0 auto;align-self:center;justify-self:center}
 .pfp svg{width:38%;fill:none;stroke:var(--mut);stroke-width:4;stroke-linecap:round}
 .pfp span{font:12px "JetBrains Mono",monospace}
 .twin .bar{display:flex;justify-content:space-between;padding:8px 12px;border-bottom:1px solid var(--line);font:12px "JetBrains Mono",monospace;color:var(--mut);gap:8px;flex-wrap:wrap}
@@ -64,8 +75,212 @@ h2::before{content:"$ ";color:var(--acc)}
 .skills span{color:var(--mut)}
 .pub{margin-bottom:14px;max-width:80ch}.pub small{color:var(--mut);display:block}
 footer{padding:30px 20px 50px;color:var(--mut);font:13px "JetBrains Mono",monospace}
-@media(max-width:820px){.hero{grid-template-columns:1fr}h1{white-space:normal}canvas{height:260px}}
+@media(max-width:820px){
+  .hero{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:0;
+    padding-top:34px;
+    text-align:center;
+  }
+  .hero-left{
+    width:100%;
+    display:contents;
+  }
+  .hero-copy{
+    width:100%;
+    display:contents;
+  }
+  .hero-copy h1{
+    order:1;
+    white-space:normal;
+    width:100%;
+    text-align:left;
+  }
+  .hero-copy .role{
+    order:2;
+    width:100%;
+    text-align:left;
+  }
+  .hero .pfp{
+    order:3;
+    width:150px;
+    height:150px;
+    margin:18px auto 0;
+  }
+  .hero-left .btns{
+    order:4;
+    justify-content:center;
+    width:100%;
+    margin-top:18px;
+  }
+  canvas{height:260px}
+}
 @media(prefers-reduced-motion:reduce){.role::after{animation:none}html{scroll-behavior:auto}}
+
+.timeline{
+  position:relative;
+  display:grid;
+  gap:0;
+  margin:0;
+  padding:0;
+}
+.timeline::before{
+  content:"";
+  position:absolute;
+  left:80.5px;
+  top:16px;
+  bottom:16px;
+  width:1px;
+  background:var(--line);
+}
+.timeline-item{
+  position:relative;
+  display:grid;
+  grid-template-columns:62px 24px minmax(0,1fr);
+  column-gap:12px;
+  padding:0 0 28px;
+}
+.timeline-item:last-child{padding-bottom:0}
+.timeline-year{
+  padding-top:23px;
+  align-self:start;
+  font:700 13px "JetBrains Mono",monospace;
+  color:var(--mut);
+  text-align:right
+}
+.timeline-node{
+  position:relative;
+  z-index:2;
+  width:13px;
+  height:13px;
+  margin-top:24.5px;left:0.5px;
+  align-self:start;
+  border:2px solid var(--line);
+  border-radius:50%;
+  background:var(--bg);
+  box-shadow:0 0 0 4px var(--bg);
+  transition:background .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease
+}
+.timeline-item:hover .timeline-node,
+.timeline-item.is-open .timeline-node,
+.timeline-item:has(.timeline-trigger[aria-expanded="true"]) .timeline-node{
+  background:var(--acc);
+  border-color:var(--acc);
+  box-shadow:0 0 0 4px var(--bg),0 0 0 6px color-mix(in srgb,var(--acc) 22%,transparent);
+  transform:scale(1.08);
+}
+.timeline-main{min-width:0}
+.timeline-trigger{
+  width:100%;
+  display:grid;
+  grid-template-columns:42px minmax(0,1fr) auto;
+  align-items:center;
+  gap:13px;
+  padding:0;
+  border:0;
+  background:none;
+  color:inherit;
+  text-align:left;
+  cursor:pointer;
+  font:inherit;
+}
+.timeline-logo{
+  width:40px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--line);
+  background:var(--panel);
+  color:var(--mut);
+  font:700 10px "JetBrains Mono",monospace;
+  letter-spacing:-.03em;
+}
+.timeline-logo img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  background-color: white;
+  border-radius:8px;
+}
+.timeline-heading{min-width:0}
+.timeline-company{
+  display:block;
+  font:700 16px "JetBrains Mono",monospace;
+  color:var(--fg);
+  line-height:1.25;
+}
+.timeline-role{
+  display:block;
+  margin-top:4px;
+  color:var(--mut);
+  font:500 13px "JetBrains Mono",monospace;
+  line-height:1.35;
+}
+.timeline-date{
+  display:block;
+  margin-top:4px;
+  color:var(--mut);
+  font:500 12px "JetBrains Mono",monospace;
+}
+.timeline-chevron{
+  color:var(--acc);
+  font:700 16px "JetBrains Mono",monospace;
+  transition:transform .2s ease;
+}
+.timeline-trigger[aria-expanded="true"] .timeline-chevron{transform:rotate(90deg)}
+.timeline-details{
+  display:grid;
+  grid-template-rows:0fr;
+  opacity:0;
+  transition:grid-template-rows .25s ease,opacity .2s ease,margin-top .25s ease;
+  margin-top:0;
+}
+.stack-label{margin-top:18px;margin-bottom:8px;font:600 12px "JetBrains Mono",monospace;color:var(--mut);text-transform:uppercase;letter-spacing:.08em}
+.stack{display:flex;flex-wrap:wrap;gap:6px}
+.stack span{padding:4px 8px;border:1px solid var(--line);border-radius:999px;font:500 12px "JetBrains Mono",monospace;color:var(--fg);background:var(--panel)}
+
+.timeline-details>div{overflow:hidden}
+.timeline-trigger[aria-expanded="true"]+.timeline-details{
+  grid-template-rows:1fr;
+  opacity:1;
+  margin-top:13px;
+}
+.timeline-details ul{
+  margin:0;
+  padding:13px 16px 13px 32px;
+  border-left:1px dashed var(--line);
+  background:color-mix(in srgb,var(--panel) 70%,transparent);
+}
+.timeline-details li{margin:6px 0}
+@media(max-width:760px){
+  .timeline::before{left:91.5px}
+  .timeline-year{padding-top:23px}
+  .timeline-node{margin-top:24.5px}
+  .timeline-item{
+    grid-template-columns:52px 24px minmax(0,1fr);
+    column-gap:8px;
+    padding-bottom:24px;
+  }
+  .timeline-year{font-size:12px}
+  .timeline-trigger{
+    grid-template-columns:34px minmax(0,1fr) auto;
+    gap:9px;
+  }
+  .timeline-logo{width:32px;height:32px;font-size:10px}
+  .timeline-company{font-size:16px}
+  .timeline-role{font-size:13px}
+}
+@media(max-width:760px){
+  .timeline{margin-left:-8px;padding-left:25px}
+  .timeline-dot{left:-25px}
+  .timeline-card{padding:16px}
+  .timeline-meta{display:block}
+  .timeline-date{margin-top:7px}
+}
+
 </style></head><body>
 <div class="header-bar"><header class="top"><nav><a href="#hero">about</a><a href="#exp">experience</a><a href="#proj">projects</a><a href="#skills">skills</a><a href="#edu">education</a><a href="#pubs">papers</a><a href="#certs">certs</a><a href="#contact">contact</a></nav>
 <button class="t" id="theme" aria-label="Toggle theme">
@@ -73,14 +288,24 @@ footer{padding:30px 20px 50px;color:var(--mut);font:13px "JetBrains Mono",monosp
 </button></header></div>
 <main>
 <div class="hero" id="hero">
-<div>
-<h1>Chinmay Srinivas</h1>
-<div class="role" id="role" aria-live="off"></div>
-<div class="btns"><a class="btn p" href="mailto:chinmay1567@gmail.com">Email</a><a class="btn" href="https://github.com/chinmay-5">GitHub</a><a class="btn" href="https://linkedin.com/in/chinmay-srinivas">LinkedIn</a></div>
-
-
+<div class="hero-left">
+  <div class="hero-copy">
+    <h1>Chinmay Srinivas</h1>
+    <div class="role" id="role" aria-live="off"></div>
+  </div>
+  <div class="btns">
+    <a class="btn" href="mailto:chinmay1567@gmail.com" aria-label="Email" title="Email">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3z"/><path d="m3 6 9 7 9-7"/></svg>
+    </a>
+    <a class="btn" href="https://github.com/chinmay-5" aria-label="GitHub" title="GitHub">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a9.5 9.5 0 0 0-3 18.51c.47.09.65-.2.65-.46v-1.78c-2.65.58-3.21-1.13-3.21-1.13-.43-1.1-1.06-1.39-1.06-1.39-.87-.59.07-.58.07-.58.96.07 1.47.99 1.47.99.86 1.47 2.25 1.05 2.8.8.09-.62.34-1.05.61-1.29-2.12-.24-4.35-1.06-4.35-4.72 0-1.04.37-1.89.98-2.56-.1-.24-.43-1.21.09-2.52 0 0 .8-.26 2.62.98a9.1 9.1 0 0 1 4.77 0c1.82-1.24 2.62-.98 2.62-.98.52 1.31.19 2.28.09 2.52.61.67.98 1.52.98 2.56 0 3.67-2.24 4.47-4.37 4.71.34.29.65.85.65 1.72v2.55c0 .26.17.56.66.46A9.5 9.5 0 0 0 12 2.5Z"/></svg>
+    </a>
+    <a class="btn" href="https://linkedin.com/in/chinmay-srinivas" aria-label="LinkedIn" title="LinkedIn">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5A1.5 1.5 0 1 1 2 4.5a1.5 1.5 0 0 1 3 0ZM2.75 8h4.5v13h-4.5zM9 8h4.3v1.78h.06c.6-1.13 2.07-2.28 4.26-2.28 4.56 0 5.38 3 5.38 6.9V21h-4.5v-5.85c0-1.4-.03-3.2-1.95-3.2-1.95 0-2.25 1.52-2.25 3.1V21H9z"/></svg>
+    </a>
+  </div>
 </div>
-<div class="pfp">
+<div class="pfp" aria-label="Profile picture placeholder">
   <img
     src="profile.jpg"
     alt="profile picture"
@@ -90,13 +315,12 @@ footer{padding:30px 20px 50px;color:var(--mut);font:13px "JetBrains Mono",monosp
 </div>
 
 <section id="about"><h2>whoami</h2>
-<p style="max-width:70ch">Robotic systems engineer with an M.Sc. from RWTH Aachen. I build learning-based control, ROS2 systems and digital twins, and I\'ve shipped edge-AI for automotive communication systems at Bosch — tested on simulators and real hardware. </p>
+<p style="max-width:70ch">Robotic systems engineer with an M.Sc. from RWTH Aachen. I build learning-based control, ROS2 systems and digital twins, and I've shipped edge-AI for automotive communication systems at Bosch — tested on simulators and real hardware.</p>
 </section>
-</section>
 
 
 
-<section id="exp"><h2>git log --experience</h2><div class="log" id="log"></div></section>
+<section id="exp"><h2>git log --experience</h2><div class="timeline" id="log"></div></section>
 
 <section id="proj"><h2>ls projects/</h2>
 <div class="filters" id="filters"></div><div class="grid" id="grid"></div></section>
@@ -107,6 +331,9 @@ footer{padding:30px 20px 50px;color:var(--mut);font:13px "JetBrains Mono",monosp
 
 <section id="edu"><h2>cat education.md</h2>
 <div class="log" id="edulog"></div></section>
+
+
+
 
 
 
@@ -123,21 +350,76 @@ footer{padding:30px 20px 50px;color:var(--mut);font:13px "JetBrains Mono",monosp
 <div><b>Introduction to Self-Driving Cars</b><span>University of Toronto, Coursera · Apr 2021</span></div></div></section>
 
 <section id="contact"><h2>./contact</h2>
-<p>Open to robot learning, robotics software, digital twin and automotive software roles. Based in Aachen, Germany. English C2, German A2.</p>
-<div class="btns"><a class="btn p" href="mailto:chinmay1567@gmail.com">chinmay1567@gmail.com</a></div></section>
+<p>Open to robot learning, robotics software, digital twin and automotive software roles. Based in Aachen, Germany.</p>
+<div class="btns"><a class="btn" href="mailto:chinmay1567@gmail.com">chinmay1567@gmail.com</a></div></section>
 </main>
 
 
 <script>
 const jobs=[
-["Robert Bosch GmbH · Master's thesis","Jan–Jul 2026, Stuttgart",["Trained RL schedulers (DQN, PPO, Dreamer) in PyTorch and Gymnasium for adaptive message aggregation in real-time systems.","Cut bandwidth use by up to <span class=metric>60%</span> with <span class=metric>3× lower latency</span> than baseline schedulers.","Ran lightweight edge inference with ONNX, LiteRT and quantization."]],
-["Robert Bosch GmbH · Software development intern","Jul–Oct 2025, Stuttgart",["Evaluated middleware for automotive Ethernet (IEEE 1722), CAN, SPI and I2C.","Built a FastAPI tool that visualizes 10+ network and ECU metrics live.","Wrote Python bindings for C middleware and motor drivers to automate hardware testing."]],
-["RWTH Aachen · Robotics Institute Germany","Jul 2024–Jun 2025, Aachen",["Built a ROS2–TwinCAT bridge that links a physical robotic bicycle to its Unity digital twin.","Wrote a C++ ROS2 node for human pose estimation with a ZED stereo camera.","Generated virtual worlds from OpenStreetMap in Unity, with up to <span class=metric>3× faster</span> rendering, and added OpenXR VR control."]],
-["Chipster Technologies · Product development engineer","Aug 2021–May 2023, Bengaluru",["Fine-tuned YOLO, SSD and Faster R-CNN and added KCF tracking for a <span class=metric>5× FPS</span> gain, then deployed with TensorFlow Lite.","Led IoT software monitoring <span class=metric>800+</span> industrial machines over MQTT, REST, MODBUS and Snap7.","Trained multimodal anomaly detectors on vibration and audio for predictive maintenance."]]];
-document.getElementById('log').innerHTML=jobs.map(j=>`<div class=job><h3>${j[0]}</h3><div class=m>${j[1]}</div><ul>${j[2].map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('');
+["Robert Bosch GmbH · Master's thesis","Jan–Jul 2026, Stuttgart",[
+ "Trained RL schedulers (DQN, PPO, Dreamer) in PyTorch and Gymnasium for adaptive message aggregation in real-time systems.",
+ "Cut bandwidth use by up to <span class=metric>60%</span> with <span class=metric>3× lower latency</span> than baseline schedulers.",
+ "Ran lightweight edge inference with ONNX, LiteRT and quantization."
+],["PyTorch","Gymnasium","DQN","PPO","Dreamer","ONNX","LiteRT"]],
+["Robert Bosch GmbH · Software development intern","Jul–Oct 2025, Stuttgart",[
+ "Evaluated middleware for automotive Ethernet (IEEE 1722), CAN, SPI and I2C.",
+ "Built a FastAPI tool that visualizes 10+ network and ECU metrics live.",
+ "Wrote Python bindings for C middleware and motor drivers to automate hardware testing."
+],["FastAPI","Python","C","Automotive Ethernet","CAN","SPI","I2C"]],
+["RWTH Aachen University · Student Research Assistant","Jul 2024–Jun 2025, Aachen",[
+ "Built a ROS2–TwinCAT bridge that links a physical robotic bicycle to its Unity digital twin.",
+ "Wrote a C++ ROS2 node for human pose estimation with a ZED stereo camera.",
+ "Generated virtual worlds from OpenStreetMap in Unity, with up to <span class=metric>3× faster</span> rendering, and added OpenXR VR control."
+],["ROS2","C++","TwinCAT","Unity","OpenStreetMap","OpenXR","ZED"]],
+["Chipster Technologies · Product development engineer","Aug 2021–May 2023, Bengaluru",[
+ "Fine-tuned YOLO, SSD and Faster R-CNN and added KCF tracking for a <span class=metric>5× FPS</span> gain, then deployed with TensorFlow Lite.",
+ "Led IoT software monitoring <span class=metric>800+</span> industrial machines over MQTT, REST, MODBUS and Snap7.",
+ "Trained multimodal anomaly detectors on vibration and audio for predictive maintenance."
+],["YOLO","SSD","Faster R-CNN","TensorFlow Lite","MQTT","REST","MODBUS","Snap7"]]];
+document.getElementById('log').innerHTML=jobs.map((j,i)=>{
+  const parts=j[0].split(' · ');
+  const company=parts[0];
+  const role=parts.slice(1).join(' · ');
+  const logo = company.includes('Bosch')
+  ? 'bosch_logo.jpg'
+  : company.includes('RWTH')
+  ? 'rwth_logo.png'
+  : 'chipster_logo.png';
+  const year=(j[1].match(/\d{4}/)||[''])[0];
+  return `<article class="timeline-item">
+    <div class="timeline-year">${year}</div>
+    <span class="timeline-node" aria-hidden="true"></span>
+    <div class="timeline-main">
+      <button class="timeline-trigger" type="button" aria-expanded="false">
+        <span class="timeline-logo" aria-hidden="true"><img src="${logo}" alt="${company} logo"></span>
+        <span class="timeline-heading">
+          <span class="timeline-company">${company}</span>
+          <span class="timeline-role">${role}</span>
+          <span class="timeline-date">${j[1]}</span>
+        </span>
+        <span class="timeline-chevron" aria-hidden="true">›</span>
+      </button>
+      <div class="timeline-details">
+        <div><ul>${j[2].map(x=>`<li>${x}</li>`).join('')}</ul>
+          <div class="stack-label">Stack</div>
+          <div class="stack">${j[3].map(x=>`<span>${x}</span>`).join('')}</div>
+        </div>
+      </div>
+    </div>
+  </article>`;
+}).join('');
+
+document.querySelectorAll('.timeline-trigger').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const expanded=btn.getAttribute('aria-expanded')==='true';
+    btn.setAttribute('aria-expanded',String(!expanded));
+    btn.closest('.timeline-item').classList.toggle('is-open',!expanded);
+  });
+});
 const edu=[
 ["M.Sc. Robotic Systems Engineering — RWTH Aachen University","Oct 2023 – Sep 2026, Aachen, Germany",["Grade: <span class=metric>1.9</span> (German scale, 1.0 = best).","Coursework: Reinforcement Learning and Learning-Based Control, Computer Vision, AI and Data Analytics, Advanced Machine Learning, Robotic Sensors and Systems."]],
-["B.Tech. Mechanical Engineering (Automotive Engineering) — PES University","Aug 2017 – Jul 2021, Bengaluru, India",["Thesis: Simulation and Validation of Networked Model for Cooperative Adaptive Cruise Control."]]];
+["B.Tech. Mechanical Engineering — PES University","Aug 2017 – Jul 2021, Bengaluru, India",["Thesis: Simulation and Validation of Networked Model for Cooperative Adaptive Cruise Control.", "Specialization in Automotive Engineering"]]];
 document.getElementById('edulog').innerHTML=edu.map(j=>`<div class=job><h3>${j[0]}</h3><div class=m>${j[1]}</div><ul>${j[2].map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('');
 const P=[
 ["SmolVLA + HIL-SERL","Fine-tuned a vision-language-action model with human-in-the-loop RL for cube pick-and-lift. <b>90% success</b> in simulation.","Robot learning","LeRobot Hackathon · Hugging Face"],
@@ -171,13 +453,16 @@ paintIcon();
 // scrollspy nav highlight (position-based, recalculated on scroll)
 const navLinks=[...document.querySelectorAll('nav a')];
 const spySections=navLinks.map(a=>document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
-let spyTicking=false;
+let spyTicking=false,lastActive=-1;
+const navEl=document.querySelector('.header-bar nav');
 function updateSpy(){
   const headerH=document.querySelector('.header-bar').offsetHeight;
   const probe=headerH+24;
   let current=spySections[0];
   for(const sec of spySections){if(sec.getBoundingClientRect().top<=probe)current=sec;else break}
-  navLinks.forEach((a,i)=>a.classList.toggle('active',spySections[i]===current));
+  const idx=spySections.indexOf(current);
+  navLinks.forEach((a,i)=>a.classList.toggle('active',i===idx));
+  if(idx!==lastActive){lastActive=idx;const link=navLinks[idx];if(link){const target=link.offsetLeft-(navEl.clientWidth-link.offsetWidth)/2;navEl.scrollTo({left:Math.max(0,target),behavior:still?'auto':'smooth'})}}
   spyTicking=false;
 }
 addEventListener('scroll',()=>{if(!spyTicking){requestAnimationFrame(updateSpy);spyTicking=true}},{passive:true});
@@ -193,19 +478,93 @@ function rs(){dpr=devicePixelRatio||1;W=cv.clientWidth;H=cv.clientHeight;cv.widt
 function pt(e){const r=cv.getBoundingClientRect();tx=e.clientX-r.left;ty=e.clientY-r.top}
 cv.addEventListener('pointermove',pt);cv.addEventListener('pointerdown',pt);cv.addEventListener('pointerleave',()=>{tx=null});
 function col(n){return getComputedStyle(root).getPropertyValue(n)}
-function frame(ts){const t=ts/1000;const bx=W/2,by=H-40,L1=Math.min(W,H*1.2)*.36,L2=L1*.85;
-let gx=tx,gy=ty;if(gx==null||still){gx=bx+Math.cos(t*.7)*L1*1.3;gy=by-L1*.9-Math.sin(t*1.1)*L1*.6}
-sx+=(gx-sx)*.12;sy+=(gy-sy)*.12;let dx=sx-bx,dy=sy-by,d=Math.hypot(dx,dy),R=L1+L2-2;if(d>R){dx*=R/d;dy*=R/d;d=R}if(d<Math.abs(L1-L2)+2)d=Math.abs(L1-L2)+2;
-const c2=(d*d-L1*L1-L2*L2)/(2*L1*L2),th2=-Math.acos(Math.max(-1,Math.min(1,c2))),th1=Math.atan2(dy,dx)-Math.atan2(L2*Math.sin(th2),L1+L2*Math.cos(th2));
-const jx=bx+L1*Math.cos(th1),jy=by+L1*Math.sin(th1),ex=jx+L2*Math.cos(th1+th2),ey=jy+L2*Math.sin(th1+th2);
-const line=col('--line'),acc=col('--acc'),a2=col('--acc2'),fg=col('--fg');
-x.clearRect(0,0,W,H);x.strokeStyle=line;x.lineWidth=1;x.setLineDash([4,5]);x.beginPath();x.arc(bx,by,L1+L2,Math.PI,2*Math.PI);x.stroke();x.setLineDash([]);
-x.beginPath();x.moveTo(0,by+22);x.lineTo(W,by+22);x.stroke();
-x.lineCap='round';x.strokeStyle=a2;x.lineWidth=10;x.beginPath();x.moveTo(bx,by);x.lineTo(jx,jy);x.stroke();
-x.strokeStyle=acc;x.beginPath();x.moveTo(jx,jy);x.lineTo(ex,ey);x.stroke();
-x.fillStyle=col('--bg');x.lineWidth=3;[[bx,by],[jx,jy]].forEach(([a,b])=>{x.beginPath();x.arc(a,b,8,0,7);x.fill();x.strokeStyle=fg;x.stroke()});
-x.strokeStyle=acc;x.lineWidth=2;x.beginPath();x.moveTo(ex-9,ey);x.lineTo(ex+9,ey);x.moveTo(ex,ey-9);x.lineTo(ex,ey+9);x.stroke();
-x.fillStyle=col('--mut');x.font='12px JetBrains Mono,monospace';x.fillText('base',bx-14,by+40);x.fillText('x '+(ex-bx).toFixed(0)+'  y '+(by-ey).toFixed(0),10,H-8);
-if(ts-t0>100){ang.textContent=`θ1 ${(-th1*180/Math.PI).toFixed(1)}°  θ2 ${(-th2*180/Math.PI).toFixed(1)}°`;t0=ts}
-requestAnimationFrame(frame)}requestAnimationFrame(frame);
+function frame(ts){
+  const t=ts/1000;
+  const bx=W/2,by=H-40;
+  const L1=Math.min(W,H*1.2)*.36,L2=L1*.85;
+
+  let gx=tx,gy=ty;
+  if(gx==null||still){
+    gx=bx+Math.cos(t*.7)*L1*1.3;
+    gy=by-L1*.9-Math.sin(t*1.1)*L1*.6;
+  }
+
+  // Keep the target and both links above the base.
+  gy=Math.min(gy,by-8);
+  sx+=(gx-sx)*.12;
+  sy+=(gy-sy)*.12;
+
+  let dx=sx-bx,dy=sy-by,d=Math.hypot(dx,dy);
+  const minR=Math.abs(L1-L2)+2,maxR=L1+L2-2;
+  d=Math.max(minR,Math.min(maxR,d));
+  const scale=Math.hypot(dx,dy)||1;
+  dx=dx/scale*d;
+  dy=dy/scale*d;
+
+  const c2=Math.max(-1,Math.min(1,(d*d-L1*L1-L2*L2)/(2*L1*L2)));
+  const a=Math.acos(c2);
+
+  // Deterministic elbow convention:
+  // 0..90°  -> upper link is to the RIGHT of the lower link
+  // 90..180° -> upper link is to the LEFT of the lower link.
+  // Keep both links above the base by rejecting IK branches that put
+  // either joint below the base and choosing the closest valid branch.
+  const targetDeg=((Math.atan2(-dy,dx)*180/Math.PI)+360)%360;
+  const candidates=[-a,a].map(th2=>{
+    const th1=Math.atan2(dy,dx)-Math.atan2(L2*Math.sin(th2),L1+L2*Math.cos(th2));
+    const jyy=by+L1*Math.sin(th1);
+    const eyy=jyy+L2*Math.sin(th1+th2);
+    const valid=jyy<=by && eyy<=by;
+    return {th1,th2,jyy,eyy,valid};
+  });
+
+  // Use one continuous elbow branch. Do not switch IK solutions at 90°:
+  // the desired visual orientation is selected once, then preserved as the
+  // target crosses 90°. This prevents the middle joint from jumping.
+  const desiredSign=-1;
+  let chosen=candidates.find(q=>q.valid && Math.sign(Math.sin(q.th2))===desiredSign);
+  if(!chosen) chosen=candidates.find(q=>q.valid);
+  if(!chosen) chosen=candidates[0];
+
+  const th1=chosen.th1;
+  const th2=chosen.th2;
+
+  const jx=bx+L1*Math.cos(th1),jy=by+L1*Math.sin(th1);
+  const ex=jx+L2*Math.cos(th1+th2),ey=jy+L2*Math.sin(th1+th2);
+
+  const line=col('--line'),acc=col('--acc'),a2=col('--acc2'),fg=col('--fg');
+  x.clearRect(0,0,W,H);
+  x.strokeStyle=line;x.lineWidth=1;x.setLineDash([4,5]);
+  x.beginPath();x.arc(bx,by,L1+L2,Math.PI,2*Math.PI);x.stroke();x.setLineDash([]);
+
+  x.beginPath();x.moveTo(0,by+22);x.lineTo(W,by+22);x.stroke();
+
+  x.lineCap='round';x.strokeStyle=a2;x.lineWidth=10;
+  x.beginPath();x.moveTo(bx,by);x.lineTo(jx,jy);x.stroke();
+
+  x.strokeStyle=acc;
+  x.beginPath();x.moveTo(jx,jy);x.lineTo(ex,ey);x.stroke();
+
+  x.fillStyle=col('--bg');x.lineWidth=3;
+  [[bx,by],[jx,jy]].forEach(([a,b])=>{
+    x.beginPath();x.arc(a,b,8,0,7);x.fill();x.strokeStyle=fg;x.stroke();
+  });
+
+  x.strokeStyle=acc;x.lineWidth=2;
+  x.beginPath();
+  x.moveTo(ex-9,ey);x.lineTo(ex+9,ey);
+  x.moveTo(ex,ey-9);x.lineTo(ex,ey+9);
+  x.stroke();
+
+  x.fillStyle=col('--mut');x.font='12px JetBrains Mono,monospace';
+  x.fillText('base',bx-14,by+40);
+  x.fillText('x '+(ex-bx).toFixed(0)+'  y '+(by-ey).toFixed(0),10,H-8);
+
+  if(ts-t0>100){
+    ang.textContent=`θ1 ${(-th1*180/Math.PI).toFixed(1)}°  θ2 ${(-th2*180/Math.PI).toFixed(1)}°`;
+    t0=ts;
+  }
+  requestAnimationFrame(frame)
+}
+requestAnimationFrame(frame);
 </script></body></html>
