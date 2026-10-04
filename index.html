@@ -69,9 +69,14 @@ h2::before{content:"$ ";color:var(--acc)}
 .filters button:hover,.filters button:focus-visible{border-color:var(--acc);color:var(--acc)}
 .filters button[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:var(--bg)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
-.card{border:1px solid var(--line);background:var(--panel);padding:18px;border-radius:6px}
+.card{position: relative;border:1px solid var(--line);background:var(--panel);padding:18px;border-radius:6px;padding-bottom: 36px;}
 .card h3{margin:0 0 6px;font-size:18px}.card p{margin:0 0 10px;color:var(--mut);font-size:15px}
-.tag{display:inline-block;font:12px "JetBrains Mono",monospace;color:var(--acc2);margin-right:10px}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.github-link{display:inline-flex;align-items:center;justify-content:center;color:var(--mut);text-decoration:none;flex-shrink:0;margin-bottom: 5px;}
+.github-link:hover,.github-link:focus-visible{color:var(--acc)}
+.github-link svg{width:20px;height:20px;fill:currentColor}
+
+.tag{display:inline-block;font:12px "JetBrains Mono",monospace;color:var(--acc2);margin-right:10px;position:absolute;bottom:18px;}
 .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
 .skills div{font:14px/1.9 "JetBrains Mono",monospace}.skills b{color:var(--acc);display:block}
 .skills span{color:var(--mut)}
@@ -132,16 +137,18 @@ footer{padding:30px 20px 50px;color:var(--mut);font:13px "JetBrains Mono",monosp
 .timeline::before{
   content:"";
   position:absolute;
-  left:80.5px;
+  left:58px;
   top:16px;
   bottom:16px;
   width:1px;
   background:var(--line);
+  pointer-events:none;
+  z-index:1;
 }
 .timeline-item{
   position:relative;
   display:grid;
-  grid-template-columns:62px 24px minmax(0,1fr);
+  grid-template-columns:34px 24px minmax(0,1fr);
   column-gap:12px;
   padding:0 0 28px;
 }
@@ -151,14 +158,15 @@ footer{padding:30px 20px 50px;color:var(--mut);font:13px "JetBrains Mono",monosp
   align-self:start;
   font:700 13px "JetBrains Mono",monospace;
   color:var(--mut);
-  text-align:right
+  text-align:left
 }
 .timeline-node{
   position:relative;
   z-index:2;
   width:13px;
   height:13px;
-  margin-top:24.5px;left:0.5px;
+  margin-top:24.5px;
+  justify-self:center;
   align-self:start;
   border:2px solid var(--line);
   border-radius:50%;
@@ -259,11 +267,11 @@ footer{padding:30px 20px 50px;color:var(--mut);font:13px "JetBrains Mono",monosp
 }
 .timeline-details li{margin:6px 0}
 @media(max-width:760px){
-  .timeline::before{left:91.5px}
+  .timeline::before{left:49px}
   .timeline-year{padding-top:23px}
   .timeline-node{margin-top:24.5px}
   .timeline-item{
-    grid-template-columns:52px 24px minmax(0,1fr);
+    grid-template-columns:30px 24px minmax(0,1fr);
     column-gap:8px;
     padding-bottom:24px;
   }
@@ -277,7 +285,7 @@ footer{padding:30px 20px 50px;color:var(--mut);font:13px "JetBrains Mono",monosp
   .timeline-role{font-size:13px}
 }
 @media(max-width:760px){
-  .timeline{margin-left:-8px;padding-left:25px}
+  .timeline{margin-left:0px;padding-left:0px}
   .timeline-dot{left:-25px}
   .timeline-card{padding:16px}
   .timeline-meta{display:block}
@@ -436,25 +444,25 @@ const edu=[
 ["B.Tech. Mechanical Engineering — PES University","Aug 2017 – Jul 2021, Bengaluru, India",["Thesis: Simulation and Validation of Networked Model for Cooperative Adaptive Cruise Control.", "Specialization in Automotive Engineering"]]];
 document.getElementById('edulog').innerHTML=edu.map(j=>`<div class=job><h3>${j[0]}</h3><div class=m>${j[1]}</div><ul>${j[2].map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('');
 const P=[
-["SmolVLA + HIL-SERL","Fine-tuned a vision-language-action model with human-in-the-loop RL for cube pick-and-lift. <b>90% success</b> in simulation.","Robotics","LeRobot Hackathon · Hugging Face"],
+["SmolVLA + HIL-SERL","Fine-tuned a vision-language-action model with human-in-the-loop RL for cube pick-and-lift. 90% success in simulation.","Robotics","LeRobot Hackathon · Hugging Face", "https://github.com/chinmay-5"],
 // ["Bosch RL schedulers","Context-aware RL policy for adaptive message aggregation in real-time automotive communication (IEEE 1722), quantized for edge inference.","Automotive","PyTorch · ONNX"],
 // ["Robotic bicycle digital twin","Real-time state streaming and control between TwinCAT, ROS2 and a Unity twin with VR.","Digital twins","ROS2 · Unity · OpenXR"],
-["Procedural world generator","Unity package that builds simulation environments from OpenStreetMap data.","Digital twins","Unity · C#"],
-["Simulated humanoid control","Streams IMU, IR and encoder data to a Unity humanoid in sync with embedded hardware.","Digital twins","Unity · REST"],
-["UR5e vision-guided control","Marker detection and camera-to-robot transforms to steer a UR5e manipulator.","Robotics","ROS · OpenCV"],
+["Procedural world generator","Unity package that builds simulation environments from OpenStreetMap data.","Digital twins","Unity · C#", "https://github.com/chinmay-5/osm2unity"],
+["Simulated humanoid control","Streams IMU, IR and encoder data to a Unity humanoid in sync with embedded hardware.","Digital twins","Unity · REST", "https://github.com/chinmay-5/humanoid-control-sim"],
+["UR5e vision-guided control","Marker detection and camera-to-robot transforms to steer a UR5e manipulator.","Robotics","ROS · OpenCV", "https://github.com/chinmay-5/vision-guided-robot-control"],
 // ["Human pose node","C++ ROS2 node for rider pose estimation, synced with onboard sensors.","Robot software","C++ · ZED SDK"],
-["Driving anomaly detection","LSTM detects unsafe driving from Assetto Corsa telemetry via Eclipse KUKSA data broker. Eclipse SDV Hackathon.","Automotive","PyTorch · KUKSA"],
-["Adaptive cruise control","String-stability simulation in MATLAB for cooperative ACC, validated on Raspberry Pi mobile robots with ultrasonic sensors.","Automotive","MATLAB · RPi"],
+["Driving anomaly detection","LSTM detects unsafe driving from Assetto Corsa telemetry via Eclipse KUKSA data broker. Eclipse SDV Hackathon.","Automotive","PyTorch · KUKSA", "https://github.com/chinmay-5/drivesim-by-wire"],
+["Adaptive cruise control","String-stability simulation in MATLAB for cooperative ACC, validated on Raspberry Pi mobile robots with ultrasonic sensors.","Automotive","MATLAB · RPi", "https://github.com/chinmay-5"],
 // ["Real-time system benchmarking","Web tool for monitoring of 10+ network and ECU metrics including latency, jitter, bandwidth, and compute load, for automotive middleware testing.","Automotive","Scapy · Wireshark · Flask"]
 ];
 const cats=["All",...new Set(P.map(p=>p[2]))];let cur="All";
 function draw(){document.getElementById('filters').innerHTML=cats.map(c=>`<button aria-pressed="${c==cur}" data-c="${c}">${c}</button>`).join('');
-document.getElementById('grid').innerHTML=P.filter(p=>cur=="All"||p[2]==cur).map(p=>`<div class=card><h3>${p[0]}</h3><p>${p[1]}</p><span class=tag>${p[3]}</span></div>`).join('')}
+document.getElementById('grid').innerHTML=P.filter(p=>cur=="All"||p[2]==cur).map(p=>`<div class=card><div class=card-head><h3>${p[0]}</h3><a class="github-link" href=${p[4]} target="_blank" rel="noopener noreferrer" aria-label="GitHub repository for ${p[0]}" title="GitHub repository"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a9.5 9.5 0 0 0-3 18.51c.47.09.65-.2.65-.46v-1.78c-2.65.58-3.21-1.13-3.21-1.13-.43-1.1-1.06-1.39-1.06-1.39-.87-.59.07-.58.07-.58.96.07 1.47.99 1.47.99.86 1.47 2.25 1.05 2.8.8.09-.62.34-1.05.61-1.29-2.12-.24-4.35-1.06-4.35-4.72 0-1.04.37-1.89.98-2.56-.1-.24-.43-1.21.09-2.52 0 0 .8-.26 2.62.98a9.1 9.1 0 0 1 4.77 0c1.82-1.24 2.62-.98 2.62-.98.52 1.31.19 2.28.09 2.52.61.67.98 1.52.98 2.56 0 3.67-2.24 4.47-4.37 4.71.34.29.65.85.65 1.72v2.55c0 .26.17.56.66.46A9.5 9.5 0 0 0 12 2.5Z"/></svg></a></div><p>${p[1]}</p><span class=tag>${p[3]}</span></div>`).join('')}
 document.getElementById('filters').onclick=e=>{if(e.target.dataset.c){cur=e.target.dataset.c;draw()}};draw();
 const S={"Robotics & Simulation":"ROS2, ROS, RViz, Unity, OpenXR, LeRobot, TwinCAT, CARLA","AI & Vision":"PyTorch, TensorFlow, LiteRT, ONNX, Gymnasium, Stable Baselines3, OpenCV, MMPose, ZED SDK","Languages":"Python, C++, C, C#, JavaScript, MATLAB, SQL","Embedded & Communication":"Nvidia Jetson, Raspberry Pi, STM32, MQTT, REST, CAN, SPI, I2C, IEEE 1722","Tools":"Linux, Docker, Git, Flask, Wireshark, Scapy, KUKSA"};
 document.getElementById('sk').innerHTML=Object.entries(S).map(([k,v])=>`<div><b>${k}:</b><span>${v}</span></div>`).join('');
 // typing role
-const roles=["robot learning","robotics software","digital twins","automotive software","ROS2 systems"];let ri=0,ci=0,del=false;const el=document.getElementById('role');
+const roles=["robotics software","robot learning","computer vision","digital twins","embedded software","real-time systems"];let ri=0,ci=0,del=false;const el=document.getElementById('role');
 const still=matchMedia('(prefers-reduced-motion:reduce)').matches;
 if(still)el.textContent="robot learning · robotics software · digital twins";else(function t(){const w=roles[ri];ci+=del?-1:1;el.textContent="> "+w.slice(0,ci);let d=del?35:70;if(!del&&ci==w.length){del=true;d=1400}else if(del&&ci==0){del=false;ri=(ri+1)%roles.length;d=300}setTimeout(t,d)})();
 // theme
